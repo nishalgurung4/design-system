@@ -76,9 +76,11 @@ body {
 	font-size:  var(--fs-400);
 	color:  hsl( var(--clr-white));
 	background-color:  hsl(var(--clr-dark));
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	display:  grid;
+	grid-template-rows:  min-content 1fr;
 }
 
 /* A elements that don't have a class get default styles */
@@ -141,7 +143,29 @@ select {
 .container {
 	padding-inline: 2em;
 	margin-inline:  auto;
-	max-width:  60rem;
+	max-width:  80rem;
+}
+
+.grid-container {
+    border: 5px solid limegreen;
+    display: grid;
+}
+
+@media (min-width: 45em) {
+    .grid-container {
+        column-gap: var(--container-gap, 2rem);
+        grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 30rem)) minmax(2rem, 1fr);
+    }
+    
+    .grid-container > *:first-child {
+        grid-column: 2;
+        outline: 1px solid red;
+    }
+
+    .grid-container > *:last-child {
+        grid-column: 3;
+        outline: 1px solid yellow;
+    }
 }
 
 .sr-only {
@@ -215,7 +239,7 @@ select {
 
 .large-button {
 	position: relative;
-	display:  grid;
+	display:  inline-grid;
 	z-index: 1;
 	place-items:  center;
 	padding:  0 2em;
